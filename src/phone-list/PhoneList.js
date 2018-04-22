@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Phone from './Phone';
 import PhoneSearch from './PhoneSearch';
 
-const PhoneList = ({phones, searchOptions}) => {
+const PhoneList = ({phones, query, orderProp, onNewOrder, onNewQuery}) => {
   const phoneList = phones.map((phone) =>
     <Phone {...phone} key={phone.id} />
   );
@@ -12,7 +12,7 @@ const PhoneList = ({phones, searchOptions}) => {
     <div className="container-fluid">
       <div className="row">
         <div className="col-md-2">
-          <PhoneSearch {...searchOptions} />
+          <PhoneSearch query={query} orderProp={orderProp} onNewQuery={onNewQuery} onNewOrder={onNewOrder} />
         </div>
         <div className="col-md-10">
           <ul className="phones">
