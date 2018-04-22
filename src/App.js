@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import VisiblePhones from './phone-list/containers/VisiblePhones';
+import PhoneDetailsContainer from './phone-detail/containers/PhoneDetailsContainer';
+import { Switch, Route } from 'react-router-dom';
 
 class App extends Component {
   render() {
@@ -14,7 +16,10 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
-        <VisiblePhones />
+        <Switch>
+          <Route exact path='/' component={VisiblePhones} />
+          <Route path='/phones/:id' component={PhoneDetailsContainer} />
+        </Switch>
       </div>
     );
   }

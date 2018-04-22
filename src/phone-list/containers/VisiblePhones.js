@@ -11,10 +11,10 @@ function getPhones(phones = [], query = '', order = ''){
   query = query.toLocaleLowerCase();
   const filtered = phones.filter(phone => phone.name.toLocaleLowerCase().indexOf(query) > -1 || phone.snippet.toLocaleLowerCase().indexOf(query) > -1);
   if(order === 'name'){
-    filtered.sort((a, b) => a.name > b.name);
+    filtered.sort((a, b) => a.name < b.name);
   }
   else{
-    filtered.sort((a, b) => a.age - b.age);
+    filtered.sort((a, b) => a.age <  b.age);
   }
 
   return filtered;
@@ -23,8 +23,8 @@ function getPhones(phones = [], query = '', order = ''){
 const mapStateToProps = (state, ownProps) => {
   return {
     phones: getPhones(state.phones, state.query, state.order),
-    query: state.query || '',
-    orderProp: state.order || 'name'
+    query: state.query,
+    orderProp: state.order
   }
 }
 

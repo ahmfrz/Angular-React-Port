@@ -1,5 +1,6 @@
 import fetch from 'cross-fetch';
 
+// PhoneList actions
 export const REQUEST_PHONES = 'REQUEST_PHONES';
 function requestPhones(){
   return {
@@ -61,5 +62,32 @@ export function fetchPhonesIfNeeded(phonesUrl){
     else{
       return Promise.resolve();
     }
+  }
+}
+
+// PhoneDetail actions
+export const UPDATE_CURRENT_IMAGE = 'UPDATE_CURRENT_IMAGE';
+export function updateCurrentImage(image){
+  return {
+    type: UPDATE_CURRENT_IMAGE,
+    image
+  }
+}
+
+export const RECEIVE_PHONE_DETAILS = 'RECEIVE_PHONE_DETAILS';
+export function receivePhoneDetails(phoneDetails){
+  return {
+    type: RECEIVE_PHONE_DETAILS,
+    phoneDetails,
+    receivedAt: Date.now()
+  }
+}
+
+export function fetchPhoneDetails(phoneDetailUrl){
+  return (dispatch) => {
+    return fetch(phoneDetailUrl)
+          .then(response => response.json(),
+                error => console.log("Error occurred", error))
+          .then(phoneDetails => dispatch(receivePhoneDetails(phoneDetails)));
   }
 }

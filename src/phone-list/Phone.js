@@ -1,15 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 const Phone = ({imageUrl, name, id, snippet}) => {
   return (
     <li className="thumbnail phone-list-item">
-      <a href="#">
+      <Link to={"/phones/" + id}>
         <img className="thumb" src={imageUrl} alt={name} />
-      </a>
-      <a href="">
+      </Link>
+      <Link to={"/phones/" + id}>
         {name}
-      </a>
+      </Link>
       <p>
         {snippet}
       </p>
