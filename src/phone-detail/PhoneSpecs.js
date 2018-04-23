@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 class PhoneSpecs extends React.Component{
   render(){
@@ -47,9 +46,9 @@ class PhoneSpecs extends React.Component{
         <dt>Bluetooth</dt>
         <dd>{this.props.specs.connectivity && this.props.specs.connectivity.bluetooth}</dd>
         <dt>Infrared</dt>
-        <dd>{this.props.specs.infrared}</dd>
+        <dd>{this.props.specs.infrared ? '\u2713' : '\u2718'}</dd>
         <dt>GPS</dt>
-        <dd>{this.props.specs.connectivity && this.props.specs.connectivity.gps}</dd>
+        <dd>{this.props.specs.connectivity && this.props.specs.connectivity.gps ? '\u2713' : '\u2718'}</dd>
       </dl>
     </li>
     <li>
@@ -81,7 +80,7 @@ class PhoneSpecs extends React.Component{
         <dt>Screen resolution</dt>
         <dd>{this.props.specs.display && this.props.specs.display.screenResolution}</dd>
         <dt>Touch screen</dt>
-        <dd>{this.props.specs.display && this.props.specs.display.touchScreen}</dd>
+        <dd>{this.props.specs.display && this.props.specs.display.touchScreen ? '\u2713' : '\u2718'}</dd>
       </dl>
     </li>
     <li>
@@ -94,9 +93,9 @@ class PhoneSpecs extends React.Component{
         <dt>Audio / headphone jack</dt>
         <dd>{this.props.specs.hardware && this.props.specs.hardware.audioJack}</dd>
         <dt>FM Radio</dt>
-        <dd>{this.props.specs.hardware && this.props.specs.hardware.fmRadio}</dd>
+        <dd>{this.props.specs.hardware && this.props.specs.hardware.fmRadio ? '\u2713' : '\u2718'}</dd>
         <dt>Accelerometer</dt>
-        <dd>{this.props.specs.hardware && this.props.specs.hardware.accelerometer}</dd>
+        <dd>{this.props.specs.hardware && this.props.specs.hardware.accelerometer ? '\u2713' : '\u2718'}</dd>
       </dl>
     </li>
     <li>

@@ -9,11 +9,11 @@ const PhoneDetails = ({name, description, currentImage, onImageChange, images, .
     <React.Fragment>
       <div className='phone-images'>
         {
-          <img src={img} className='selected' alt={name} />
+          <img src={img} className='phone' alt={name} />
         }
       </div>
-      <h1>{name}</h1>
-      <p>{description}</p>
+      <h1 style={{textAlign: 'left', fontSize: '36px'}}>{name}</h1>
+      <p className='text-justify'>{description}</p>
 
       <PhoneThumbs images={images} onImageChange={onImageChange} />
       <h2>{this.props}</h2>

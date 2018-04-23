@@ -38,7 +38,7 @@ h1 {
 /* View: Phone detail */
 .phone {
   background-color: white;
-  display: none;
+  border: 1px solid black;
   float: left;
   height: 400px;
   margin-bottom: 2em;
@@ -93,6 +93,7 @@ h1 {
   display: inline-block;
   vertical-align: top;
   width: 200px;
+  text-align: left;
 }
 
 .specs > li > span {
