@@ -4,7 +4,8 @@ import {
   QUERY_PHONES,
   REORDER_PHONES,
   RECEIVE_PHONE_DETAILS,
-  UPDATE_CURRENT_IMAGE
+  UPDATE_CURRENT_IMAGE,
+  FILTER_PHONES
 } from './actions';
 
 const initialPhoneDetails =
@@ -67,6 +68,13 @@ function rootReducer(state = initialState, action){
     case UPDATE_CURRENT_IMAGE:
       return Object.assign({}, state, {
         image: action.image
+      });
+
+    case FILTER_PHONES:
+      // Simply return the same phones, filtering logic is in
+      // VisiblePhonesContainer
+      return Object.assign({}, state, {
+        phones: [...state.phones]
       });
 
     default:

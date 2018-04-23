@@ -83,11 +83,19 @@ export function receivePhoneDetails(phoneDetails){
   }
 }
 
+// thunk middleware
 export function fetchPhoneDetails(phoneDetailUrl){
   return (dispatch) => {
     return fetch(phoneDetailUrl)
           .then(response => response.json(),
                 error => console.log("Error occurred", error))
           .then(phoneDetails => dispatch(receivePhoneDetails(phoneDetails)));
+  }
+}
+
+export const FILTER_PHONES = 'FILTER_PHONES';
+export function filterPhones(){
+  return {
+    type: FILTER_PHONES,
   }
 }

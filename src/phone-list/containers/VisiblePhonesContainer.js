@@ -3,18 +3,31 @@ import { connect } from 'react-redux';
 import {
   fetchPhonesIfNeeded,
   queryPhones,
-  reOrderPhones
+  reOrderPhones,
+  filterPhones
  } from '../../core/actions';
 import PhoneList from '../PhoneList';
+
+function compareItems(a, b){
+  if(a < b){
+    return -1;
+  }
+
+  if(a > b){
+    return 1;
+  }
+
+  return 0;
+}
 
 function getPhones(phones = [], query = '', order = ''){
   query = query.toLocaleLowerCase();
   const filtered = phones.filter(phone => phone.name.toLocaleLowerCase().indexOf(query) > -1 || phone.snippet.toLocaleLowerCase().indexOf(query) > -1);
   if(order === 'name'){
-    filtered.sort((a, b) => a.name < b.name);
+    filtered.sort((a, b) => compareItems(a.name.toLocaleLowerCase(), b.name.toLocaleLowerCase()));
   }
   else{
-    filtered.sort((a, b) => a.age <  b.age);
+    filtered.sort((a, b) => compareItems(a.age, b.age));
   }
 
   return filtered;
@@ -32,19 +45,30 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     onNewQuery: query => {
       dispatch(queryPhones(query));
-      dispatch(fetchPhonesIfNeeded('phones/phones.json'));
+
+      // If the query is empty then we need all phones
+      // otherwise no need to retrieve the list every time
+      // a new query is applied
+      query.trim() === '' ?
+        dispatch(fetchPhonesIfNeeded('phones/phones.json')) :
+        dispatch(filterPhones());
     },
     onNewOrder: order => {
       dispatch(reOrderPhones(order))
-      dispatch(fetchPhonesIfNeeded('phones/phones.json'));
+
+      // Calling the API just to reorder is not a good idea
+      // dispatch(fetchPhonesIfNeeded('phones/phones.json'));
+      dispatch(filterPhones());
     },
-    dispatch
+    fetchPhones: url => {
+      dispatch(fetchPhonesIfNeeded(url));
+    }
   }
 }
 
-class VisiblePhones extends React.Component{
+class VisiblePhonesContainer extends React.Component{
   componentDidMount(){
-    this.props.dispatch(fetchPhonesIfNeeded('phones/phones.json'));
+    this.props.fetchPhones('phones/phones.json');
   }
 
   render(){
@@ -59,4 +83,4 @@ class VisiblePhones extends React.Component{
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps)(VisiblePhones);
+  mapDispatchToProps)(VisiblePhonesContainer);

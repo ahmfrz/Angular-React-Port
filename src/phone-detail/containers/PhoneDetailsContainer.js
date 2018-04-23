@@ -7,7 +7,7 @@ class PhoneDetailsContainer extends React.Component{
   componentDidMount(){
     const phoneId = this.props.match.params.id;
     const url = '/phones/' + phoneId + '.json';
-    this.props.dispatch(fetchPhoneDetails(url));
+    this.props.fetchPhoneDetails(url);
   }
 
   render(){
@@ -36,7 +36,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     onImageChange: (image) => {
       dispatch(updateCurrentImage(image));
     },
-    dispatch
+    fetchPhoneDetails: (url) => {
+      dispatch(fetchPhoneDetails(url));
+    }
   }
 }
 
