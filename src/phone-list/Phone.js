@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const Phone = ({imageUrl, name, id, snippet}) => {
   return (
-    <li className="thumbnail phone-list-item">
+    <li className="thumbnail">
       <Link to={"/phones/" + id}>
         <img className="thumb" src={imageUrl} alt={name} />
       </Link>

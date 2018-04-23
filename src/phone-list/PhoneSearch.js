@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const PhoneSearch = ({query, orderProp, onNewQuery, onNewOrder}) => {
   return (
-    <React.Fragment>
+    <div style={{textAlign: 'initial'}}>
       <p>Search:
         <input value={query} onChange={(e) => {onNewQuery(e.target.value)}} />
       </p>
@@ -15,7 +15,7 @@ const PhoneSearch = ({query, orderProp, onNewQuery, onNewOrder}) => {
           <option value="age">Newest</option>
         </select>
       </p>
-    </React.Fragment>
+    </div>
     );
 }
 
