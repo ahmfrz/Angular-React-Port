@@ -31,7 +31,7 @@ const initialState = {
   isFetching: false,
   phones: [],
   query: '',
-  order: '',
+  order: 'name',
   image: '',
   phoneDetails: initialPhoneDetails
   }
