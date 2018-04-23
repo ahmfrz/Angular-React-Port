@@ -19,6 +19,7 @@ class App extends Component {
         <Switch>
           <Route exact path='/' component={VisiblePhonesContainer} />
           <Route path='/phones/:id' component={PhoneDetailsContainer} />
+          <Route render={() => <h1 style={{color: 'red'}}>"Invalid URL"</h1>} />
         </Switch>
       </div>
     );
